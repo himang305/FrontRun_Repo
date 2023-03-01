@@ -1,6 +1,6 @@
 const express = require("express");
 const pauseRoute = express.Router();
-const ABI = require("../.ContractABI.json");
+const ABI = require("../ContractABI.json");
 
 require('dotenv').config();  
 
@@ -36,12 +36,12 @@ async function pauseWithdraw(gasPrice) {
         } 
         let key = process.env.PVT_KEY ;
         let signTransaction = await web3Eth.eth.accounts.signTransaction(transactionParameters, key);
-        console.log(signTransaction);
+        console.log('signTransaction');
         let sentTx = await web3Eth.eth.sendSignedTransaction(signTransaction.rawTransaction);
         console.log('Transaction Hash: ' + sentTx);
         return 1;
     } catch (error) {
-        console.log('error');
+        console.log(error);
         return 0;
     }
 }

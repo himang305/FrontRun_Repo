@@ -34,12 +34,13 @@ const wssOptions = {
 listenVulnerableCalls = async () => {
   web3Eth.eth.subscribe('logs', wssOptions, function (error, result) {
     if (!error) {
+      console.log("Hash : ", result.transactionHash);
       sendMail(result.transactionHash);
     }
   });
 }
 
-listenVulnerableCalls();
+// listenVulnerableCalls();
 console.log('Event Listening Started');
 
 const sendMail = (hash) => {

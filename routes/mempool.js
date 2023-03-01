@@ -26,8 +26,9 @@ const subscription = web3.eth.subscribe("pendingTransactions", (err, res) => {
     if (err) console.error(err);
 });
 
-async function init() {
+async function initiateListening() {
     subscription.on("data", (txHash) => {
+        console.log('-');
         setTimeout(async () => {
             try {
                 let tx = await web3.eth.getTransaction(txHash);
@@ -61,6 +62,6 @@ async function pauseContract(gas) {
     })
 }
 
-init();
+initiateListening();
 
 module.exports = mempoolRoute
